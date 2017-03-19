@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+	<title>LED Controller</title>
+	<meta name="viewport" content="width=400px" />
+	<link rel="stylesheet" href="style.css">
+
+	<script src="socket.io/socket.io.js"></script>
+
+  </head>
+  <body>
+	<input type="text" id= "inputMenssage" oninput="showValue(this.value)" />
+	
+	<br><br>
+	
+	<span id="outputText">
+	</span>
+	
+	<br><br>
+
+	<button id="btn_gravacao">Gravar</button>
+  <script type="text/javascript" src="../../lib/js/speechapi.js"></script>
+	
+	<script type="text/javascript">
+		var socket = io.connect();
+		
+		socket.on('command', function (data) {
+			document.getElementById("inputMenssage").value = data.value;
+			document.getElementById("outputText").innerHTML = data.value;
+		});
+		
+		function showValue(newValue)
+		{
+			document.getElementById("outputText").innerHTML=newValue;
+			socket.emit('command', { value: newValue });
+		}
+	</script>
+  </body>
+</html>
