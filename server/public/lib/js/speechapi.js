@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', function(){
         document.getElementById('inputMessage').value = resultado;
 
         showValue(resultado);
-        console.log(resultado);
+       // console.log(resultado);
       }
 
       btn_gravacao.addEventListener('click', function(e){
