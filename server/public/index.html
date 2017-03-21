@@ -9,32 +9,21 @@
 
   </head>
   <body>
-	<!--input type="text" id= "inputMessage" oninput="showValue(this.value)" /-->
-	<textarea id="inputMessage"></textarea>
+	<input type="text" id= "inputMessage" oninput="showValue(this.value)"/>
 	  
-	<br><br>
-	
+	<br>
+	<!--oninput="showValue(this.value)"-->
 	<span id="outputText">
 	</span>
 	
 	<br><br>
 
 	<button id="btn_gravacao">Gravar!</button>
-  <script type="text/javascript" src="../../lib/js/speechapi.js"></script>
-	
-	<script type="text/javascript">
-		var socket = io.connect();
-		
-		socket.on('command', function (data) {
-			document.getElementById("inputMenssage").value = data.value;
-			document.getElementById("outputText").innerHTML = data.value;
-		});
-		
-		function showValue(newValue)
-		{
-			document.getElementById("outputText").innerHTML=newValue;
-			socket.emit('command', { value: newValue });
-		}
-	</script>
+
+  <script type="text/javascript" src="lib/js/speechapi.js"></script>
+
+  <script type="text/javascript">
+  	 
+  </script>
   </body>
 </html>
