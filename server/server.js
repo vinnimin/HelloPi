@@ -22,7 +22,7 @@ var commandMenssage = 'Diga o comando';
 
 
 io.sockets.on('connection', function (socket) {
-	
+
 var command = function (buf){
 	var comando = buf.toString();
 	if(comando === 'Alô pai' || comando === 'hello' || comando === 'Hello Kitty' || comando === 'Alô Pizza' || comando === 'jalopy'){
@@ -31,19 +31,16 @@ var command = function (buf){
 }
 		socket.on('command', function (data) {
 		commandMenssage = data.value;
-<<<<<<< HEAD
 
 		email.enviarEmail(commandMenssage);
-=======
->>>>>>> c50062ee7023adc0a6563704f076438d0a68db35
 		var buf = new Buffer(commandMenssage);
 		decoder.write(buf);
 		//command(buf);
-		
+
 			//console.log('Oi :]');
 			command(buf);
-			
-	
+
+
 		//.pipe(command);
 		//buf.write(commandMenssage);
 		//configurar para escreverconteudo do buffer na porta do dispositivo;
@@ -51,15 +48,11 @@ var command = function (buf){
 		console.log(buf.toString());
 		io.sockets.emit('command', {value: commandMenssage});
 	});
-<<<<<<< HEAD
 
 	socket.emit('command', {value: commandMenssage});
-=======
-	
-	socket.emit('command', {value: commandMenssage});	
 
+	socket.emit('command', {value: commandMenssage});
 
->>>>>>> c50062ee7023adc0a6563704f076438d0a68db35
 });
 
 console.log("Servidor disponivel");
