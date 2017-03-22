@@ -1,0 +1,29 @@
+{
+  "name": "hello-pi",
+  "version": "1.0.0",
+  "description": "Command Voice with Raspberry and Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinnimin/HelloPi.git"
+  },
+  "keywords": [
+    "node",
+    "rapberry",
+    "voice"
+  ],
+  "author": "VinniMin e Z4yon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinnimin/HelloPi/issues"
+  },
+  "homepage": "https://github.com/vinnimin/HelloPi#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "serialport": "^4.0.7",
+    "socket.io": "^1.7.3"
+  }
+}
