@@ -10,6 +10,10 @@ var socket = io.connect();
           socket.emit('command', { value: newValue });
         }
 
+        socket.on('callPi',function(){
+        alert("Yes, my Lord :]");
+        });
+
 window.addEventListener('DOMContentLoaded', function(){
 
     var btn_gravacao = document.querySelector('#btn_gravacao');

@@ -19,27 +19,47 @@ app.use(express.static('public'));
 
 var commandMenssage = 'Diga o comando';
 
-var command = function (buf){
-	if(buf.toString() === 'Alô pai' || buf.toString() === 'hello' || buf.toString() === 'Hello Kitty' || buf.toString() === 'Alô Pizza')
-		console.log('Oi :]');
-}
+
 
 io.sockets.on('connection', function (socket) {
-	socket.on('command', function (data) {
+	
+var command = function (buf){
+	var comando = buf.toString();
+	if(comando === 'Alô pai' || comando === 'hello' || comando === 'Hello Kitty' || comando === 'Alô Pizza' || comando === 'jalopy'){
+		io.sockets.emit('callPi');
+	}
+}
+		socket.on('command', function (data) {
 		commandMenssage = data.value;
+<<<<<<< HEAD
 
 		email.enviarEmail(commandMenssage);
+=======
+>>>>>>> c50062ee7023adc0a6563704f076438d0a68db35
 		var buf = new Buffer(commandMenssage);
 		decoder.write(buf);
-		command(buf);//.pipe(command);
+		//command(buf);
+		
+			//console.log('Oi :]');
+			command(buf);
+			
+	
+		//.pipe(command);
 		//buf.write(commandMenssage);
 		//configurar para escreverconteudo do buffer na porta do dispositivo;
 
 		console.log(buf.toString());
 		io.sockets.emit('command', {value: commandMenssage});
 	});
+<<<<<<< HEAD
 
 	socket.emit('command', {value: commandMenssage});
+=======
+	
+	socket.emit('command', {value: commandMenssage});	
+
+
+>>>>>>> c50062ee7023adc0a6563704f076438d0a68db35
 });
 
 console.log("Servidor disponivel");
