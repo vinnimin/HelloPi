@@ -5,7 +5,7 @@ var   express = require('express')
 	  app = express();
 	  server = require('http').createServer(app);
 	  io = require('socket.io').listen(server);
-
+		email = require('./emailService.js');
 
 //biblioteca para escrever na porta
 //var SerialPort = require("serialport");
@@ -15,7 +15,7 @@ console.log("Abrindo servidor");
 server.listen(8080);
 
 console.log("Servindo página");
-app.use(express.static('public'));		
+app.use(express.static('public'));
 
 var commandMenssage = 'Diga o comando';
 
@@ -27,17 +27,18 @@ var command = function (buf){
 io.sockets.on('connection', function (socket) {
 	socket.on('command', function (data) {
 		commandMenssage = data.value;
-		
+
+		email.enviarEmail(commandMenssage);
 		var buf = new Buffer(commandMenssage);
 		decoder.write(buf);
 		command(buf);//.pipe(command);
 		//buf.write(commandMenssage);
 		//configurar para escreverconteudo do buffer na porta do dispositivo;
-		
+
 		console.log(buf.toString());
-		io.sockets.emit('command', {value: commandMenssage});	
+		io.sockets.emit('command', {value: commandMenssage});
 	});
-	
+
 	socket.emit('command', {value: commandMenssage});
 });
 
