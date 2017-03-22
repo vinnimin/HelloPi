@@ -19,18 +19,27 @@ app.use(express.static('public'));
 
 var commandMenssage = 'Diga o comando';
 
-var command = function (buf){
-	if(buf.toString() === 'Alô pai' || buf.toString() === 'hello' || buf.toString() === 'Hello Kitty' || buf.toString() === 'Alô Pizza')
-		console.log('Oi :]');
-}
+
 
 io.sockets.on('connection', function (socket) {
-	socket.on('command', function (data) {
+	
+var command = function (buf){
+	var comando = buf.toString();
+	if(comando === 'Alô pai' || comando === 'hello' || comando === 'Hello Kitty' || comando === 'Alô Pizza' || comando === 'jalopy'){
+		io.sockets.emit('callPi');
+	}
+}
+		socket.on('command', function (data) {
 		commandMenssage = data.value;
-		
 		var buf = new Buffer(commandMenssage);
 		decoder.write(buf);
-		command(buf);//.pipe(command);
+		//command(buf);
+		
+			//console.log('Oi :]');
+			command(buf);
+			
+	
+		//.pipe(command);
 		//buf.write(commandMenssage);
 		//configurar para escreverconteudo do buffer na porta do dispositivo;
 		
@@ -38,7 +47,9 @@ io.sockets.on('connection', function (socket) {
 		io.sockets.emit('command', {value: commandMenssage});	
 	});
 	
-	socket.emit('command', {value: commandMenssage});
+	socket.emit('command', {value: commandMenssage});	
+
+
 });
 
 console.log("Servidor disponivel");
