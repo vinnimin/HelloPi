@@ -9,6 +9,13 @@
     margin: 0;
     padding: 0;
 }
+.logo {
+    left: 50%;
+    margin-left: -;
+    /* margin: auto; */
+    vertical-align: middle;
+    margin-left: -125px;
+    position: relative;
 
 .chat li
 {

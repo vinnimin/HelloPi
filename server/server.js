@@ -24,8 +24,8 @@ var commandMenssage = 'Diga o comando';
 io.sockets.on('connection', function (socket) {
 
 var command = function (buf){
-	var comando = buf.toString();
-	if(comando === 'Alô pai' || comando === 'hello' || comando === 'Hello Kitty' || comando === 'Alô Pizza' || comando === 'jalopy'){
+	var comando = buf.toString().toLowerCase();
+	if(comando === 'Alô pai' || comando === 'hello pai' || comando === 'hello' || comando === 'Hello Kitty' || comando === 'Alô Pizza' || comando === 'jalopy'){
 		io.sockets.emit('callPi');
 	}
 }
