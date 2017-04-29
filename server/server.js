@@ -9,7 +9,6 @@ const     express = require('express')
 
 var 	  app = express()
 		, serialPort = new SerialPort()
-		//, serialPort = new SerialPort(//"/dev/ttyACM0", { baudrate: 115200 })
 		, decoder = new StringDecoder('utf8');
 
 //Processo
