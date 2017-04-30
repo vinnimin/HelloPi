@@ -1,12 +1,12 @@
 var socket = io.connect();
         socket.on('command', function (valor) {
           document.getElementById("inputMessage").value = valor.value;
-          document.getElementById("outputText").innerHTML = valor.value;
+          document.getElementById("inputMessage").innerHTML = valor.value;
         });
 
         function showValue(newValue)
         {
-          document.getElementById("outputText").value = newValue;
+          document.getElementById("inputMessage").value = newValue;
           socket.emit('command', { value: newValue });
         }
 

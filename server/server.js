@@ -1,46 +1,32 @@
 //Blibliocas
-const     express = require('express')
-		, StringDecoder = require('string_decoder').StringDecoder
-		, server = require('http').createServer(app)
-		, io = require('socket.io').listen(server)
-		, email = require('./emailService.js')
-		//vou trocar o SerialPort pelo johnny-five (será implementado)
-		, SerialPort = require("serialport").SerialPort;
+const     express = require("express")
+		, app = express()
+		, server = require("http").createServer(app)
+		, io = require("socket.io").listen(server)
+		, StringDecoder = require("string_decoder").StringDecoder
+		, decoder = new StringDecoder("utf8")
+		, commandList = require("./app/command-list.js");
 
-var 	  app = express()
-		, serialPort = new SerialPort()
-		, decoder = new StringDecoder('utf8');
-
-//Processo
+//Inicializando servidor;
 console.log("Abrindo servidor");
-server.listen(8080);
+server.listen(8000);
 console.log("Servindo página");
-app.use(express.static('public'));
+app.use(express.static("public")); 
 
+//Processamento
 var commandMenssage = 'Diga o comando';
 
 io.sockets.on('connection', function (socket) {
-	var command = function (buf){
-		var comando = buf.toString().toLowerCase();
-		if(comando === 'Alô pai' || comando === 'hello pai' || comando === 'hello' || comando === 'Hello Kitty' || comando === 'Alô Pizza' || comando === 'jalopy'){
-			io.sockets.emit('callPi');
-		}
-	}
 	socket.on('command', function (data) {
 		commandMenssage = data.value;
-		email.enviarEmail(commandMenssage);
 		var buf = new Buffer(commandMenssage);
 		decoder.write(buf);
-		//command(buf);
-		//console.log('Oi :]');
-		command(buf);
-		//.pipe(command);
-		//buf.write(commandMenssage);
-		//configurar para escreverconteudo do buffer na porta do dispositivo;
-		console.log(buf.toString());
+		console.log(buf.toString().toLowerCase());
+		commandList.hello(buf);
+		commandList.sendMail(buf);
 		io.sockets.emit('command', {value: commandMenssage});
 	});
 	socket.emit('command', {value: commandMenssage});
-	socket.emit('command', {value: commandMenssage});
 });
 console.log("Servidor disponivel");
+

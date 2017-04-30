@@ -15,7 +15,7 @@ var email = {
   html: '<strong>Boa noite professor.</strong>'
 };
 
-this.enviarEmail = function(comando){
+exports.enviarEmail = function(comando){
   if(comando == "enviar e-mail"){
     console.log('alou');
     transporte.sendMail(email, function(err, info){
