@@ -24,6 +24,7 @@ io.sockets.on('connection', function (socket) {
 		console.log(buf.toString().toLowerCase());
 		commandList.hello(buf);
 		commandList.sendMail(buf);
+		commandList.commandLed(buf);
 		io.sockets.emit('command', {value: commandMenssage});
 	});
 	socket.emit('command', {value: commandMenssage});

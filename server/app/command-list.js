@@ -2,8 +2,8 @@ const     express = require("express")
         , app = express()
         , server = require("http").createServer(app)
         , io = require("socket.io").listen(server)
-        , nodemailer = require('nodemailer')
-        //, email = require("../emailService.js");
+        , nodemailer = require("nodemailer")
+        , board = require("./hardware-controller.js");
 
 exports.hello = function (buf) {
     var comando = buf.toString().toLowerCase();
@@ -11,6 +11,14 @@ exports.hello = function (buf) {
     console.log("capturei");
     return io.sockets.emit('callPi');
     }
+}
+
+//função do led
+exports.commandLed = function (buf) {
+    var comando = buf.toString().toLowerCase();
+        if(comando === 'led') {
+          board.startBoard();
+        }
 }
 
 
