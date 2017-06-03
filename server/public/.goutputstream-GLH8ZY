@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>LED Controller</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="lib/css/style.css">
+	
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"
+
+</head>
+<body>
+	<div class="container col-md-6 col-md-offset-2 todo">
+		<div class="">
+            <div><img class="logo" src="/lib/css/marcaHelloPi.png" width="250px"></div>
+    <div class="row form-group">
+        <div class="">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="background-color: #585858;">
+                    <span class="glyphicon glyphicon-comment"></span> HelloPi
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul class="dropdown-menu slidedown">
+                            <li><a href=""><span class="glyphicon glyphicon-refresh">
+                            </span>Refresh</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-ok-sign">
+                            </span>Available</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-remove">
+                            </span>Busy</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-time"></span>
+                                Away</a></li>
+                            <li class="divider"></li>
+                            <li><a href=""><span class="glyphicon glyphicon-off"></span>
+                                Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body body-panel">
+                    <ul class="chat">
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">User</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                </div>
+                                <p>
+                                    Acenda a Luz!.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                    <strong class="pull-right primary-font">Pi</strong>
+                                </div>
+                                <p>
+                                    Opa, é pra já!
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer clearfix">
+                    <textarea type="text" id= "inputMessage" oninput="showValue(this.value)" class="form-control" rows="3"></textarea>
+                    <span class="col-

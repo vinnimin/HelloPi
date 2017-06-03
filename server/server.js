@@ -2,32 +2,27 @@
 const     express = require("express")
 		, app = express()
 		, server = require("http").createServer(app)
-		, io = require("socket.io").listen(server)
-		, StringDecoder = require("string_decoder").StringDecoder
-		, decoder = new StringDecoder("utf8")
-		, commandList = require("./app/command-list.js");
+		, logger = require("morgan")
+		, bodyParser = require("body-parser")
+		, cors = require("cors");
+		//, commandList = require("./app/command-list.js");
 
-//Inicializando servidor;
-console.log("Abrindo servidor");
-server.listen(8000);
-console.log("Servindo página");
-app.use(express.static("public")); 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(logger("dev"));
+app.use(cors());
 
-//Processamento
-var commandMenssage = 'Diga o comando';
+app.post("/api/test", (req, res) => {
 
-io.sockets.on('connection', function (socket) {
-	socket.on('command', function (data) {
-		commandMenssage = data.value;
-		var buf = new Buffer(commandMenssage);
-		decoder.write(buf);
-		console.log(buf.toString().toLowerCase());
-		commandList.hello(buf);
-		commandList.sendMail(buf);
-		commandList.commandLed(buf);
-		io.sockets.emit('command', {value: commandMenssage});
-	});
-	socket.emit('command', {value: commandMenssage});
+	console.log(req.body);
+
+	var response = "Retornando resposta";
+	res.json(response);
+
 });
-console.log("Servidor disponivel");
+
+app.listen(8000);
+console.log("aplicação escutando 8000")
+
+
 
