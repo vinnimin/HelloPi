@@ -15,10 +15,10 @@ app.post("/api/tably", (req, res) => {
 
 	console.log(req.body);
 
-	commandList.hello(eq.body);
-	commandList.sendMail(eq.body);
-	commandList.commandLed(eq.body);
-	commandList.ativar(eq.body);
+	commandList.hello(req.body);
+	commandList.sendMail(req.body);
+	commandList.commandLed(req.body);
+	commandList.ativar(req.body);
 
 	let response = "Comando recebido";
 	res.json(response);
