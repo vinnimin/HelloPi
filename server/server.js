@@ -13,12 +13,11 @@ app.use(cors());
 
 app.post("/api/tably", (req, res) => {
 
-	console.log(req.body);
-
-	commandList.hello(req.body);
-	commandList.sendMail(req.body);
-	commandList.commandLed(req.body);
-	commandList.ativar(req.body);
+	var buf = req.body.message[0].toString().toLowerCase();
+        console.log(buf);
+        commandList.hello(buf);
+        commandList.sendMail(buf);
+        commandList.commandLed(buf);
 
 	let response = "Comando recebido";
 	res.json(response);
