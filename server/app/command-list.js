@@ -3,7 +3,13 @@ const     express = require("express")
         , server = require("http").createServer(app)
         , io = require("socket.io").listen(server)
         , nodemailer = require("nodemailer")
-        , board = require("./hardware-controller.js");
+        //, board = require("./hardware-controller.js");
+
+var five = require("johnny-five");
+var Raspi = require("raspi-io");
+var board = new five.Board({
+         io: new Raspi()
+});
 
 exports.hello = function (buf) {
     var comando = buf.toString().toLowerCase();
@@ -13,13 +19,29 @@ exports.hello = function (buf) {
     }
 }
 
-//função do led
-exports.commandLed = function (buf) {
+exports.ativar = function (buf) {
     var comando = buf.toString().toLowerCase();
-        if(comando === 'led') {
-          board.startBoard();
-        }
+    if(comando === 'ativar' || comando === 'ativa'){
+	var five = require("johnny-five");
+        var Raspi = require("raspi-io");
+        var board = new five.Board({
+	     io: new Raspi()
+        });
+    }
 }
+
+//função do led
+board.on("ready", function(){
+	var led = new five.Led("P1-13");
+	exports.commandLed = function (buf) {
+	    var comando = buf.toString().toLowerCase();
+	        if(comando === 'acender luz' || comando === 'acender a luz' || comando === 'acender led' || comando === 'acender o led') {
+	       	 	led.on();
+	     	}else if(comando === 'apagar led' || comando === 'apagar o led' || comando === 'apagar luz' || comando === 'apagar a luz'){
+			led.off();
+		}
+	}
+});
 
 
 //função de email
